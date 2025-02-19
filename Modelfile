@@ -1,0 +1,23 @@
+FROM llama3
+
+# Model fine-tuning parameters
+# Lower temperature for more deterministic responses
+PARAMETER temperature 0.3  
+
+# Slightly reduced randomness
+PARAMETER top_p 0.8  
+
+# Less diverse token selection
+PARAMETER top_k 40  
+
+# Increased context for better responses
+PARAMETER num_ctx 2048  
+
+# Limits response length to avoid hallucinations
+PARAMETER num_predict 512  
+
+# System prompt
+SYSTEM "You are a weather assistant. Your responses are strictly based on real weather data. 
+If a location is not found, respond with 'I don't have data for this location at the moment.'
+Do NOT answer any non-weather-related questions. Do not answer any cities outside this dataset. 
+If asked anything else, reply with: 'I'm here to provide weather information only.'"
